@@ -1,0 +1,159 @@
+Here’s the framework you’ll use for every program from now on:
+
+## The engineer’s build sequence
+
+### 1. Define the outcome
+
+Not “build an app.”
+
+Say:
+
+> “I need a program that lets a user track expenses, store them, view them, and calculate totals.”
+
+If the outcome is vague, the code will be trash.
+
+### 2. Define the user actions
+
+Ask: “What can the user do?”
+
+For the expense tracker:
+
+```text
+1. Add expense
+2. View expenses
+3. Calculate total
+4. Filter by category
+5. Quit
+```
+
+These usually become your menu options or API endpoints.
+
+### 3. Define the data model
+
+Ask: “What information does one thing need?”
+
+One expense needs:
+
+```python
+{
+    "amount": 25.00,
+    "category": "food",
+    "description": "Chipotle"
+}
+```
+
+This is the most important step. Bad data structure = painful code.
+
+### 4. Define storage
+
+Ask: “Where does the data live?”
+
+For version 1:
+
+```python
+expenses = []
+```
+
+Later:
+
+```text
+v1: list in memory
+v2: file
+v3: database
+v4: cloud app
+```
+
+Start simple. Don’t over-engineer.
+
+### 5. Define operations
+
+Ask: “What actions happen to the data?”
+
+For this project:
+
+```python
+add_expense()
+view_expenses()
+calculate_total()
+filter_by_category()
+```
+
+Rule: one function = one job.
+
+### 6. Define program flow
+
+Ask: “What happens first, second, third?”
+
+For a command-line app:
+
+```text
+Start program
+Show menu
+User chooses option
+Run matching function
+Repeat until user quits
+```
+
+### 7. Handle edge cases
+
+Ask: “What could go wrong?”
+
+Examples:
+
+```text
+User enters text instead of number
+User filters a category that does not exist
+Expense list is empty
+User picks invalid menu option
+```
+
+This is where you start thinking like a real engineer.
+
+### 8. Build in small versions
+
+Do not build the whole thing at once.
+
+Build like this:
+
+```text
+v1: hardcoded expenses
+v2: add expense manually through function calls
+v3: user input menu
+v4: save to file
+v5: database
+v6: web API
+```
+
+That’s how engineers avoid drowning.
+
+## Your mental checklist before coding
+
+Use this every time:
+
+```text
+What is the goal?
+What can the user do?
+What data do I need?
+How will I store it?
+What functions do I need?
+What order does the program run in?
+What can go wrong?
+What is the smallest version I can build first?
+```
+
+For the expense tracker, your first assignment is not code.
+
+Write this:
+
+```text
+Goal:
+User actions:
+Data model:
+Storage:
+Functions:
+Program flow:
+Edge cases:
+Version 1:
+```
+
+Fill it out yourself. That’s how you build the muscle.

@@ -1,0 +1,477 @@
+Now you’re learning the thing that separates:
+
+- random coders
+  from
+- actual software engineers.
+
+Because program flow is:
+
+# the orchestration of the system
+
+You already learned:
+
+- data
+- storage
+- operations
+
+Now flow answers:
+
+# “In what sequence do things happen?”
+
+This is HUGE.
+
+Most bugs, bad architecture, and messy systems come from poor flow design.
+
+---
+
+# What Program Flow Actually Is
+
+Program flow is:
+
+# the lifecycle of the application
+
+Meaning:
+
+```text
+What happens first?
+What happens next?
+What triggers what?
+What loops?
+What ends?
+```
+
+You are defining:
+
+# the movement of state through the system
+
+---
+
+# Engineers Think in Flows Before Code
+
+They mentally simulate the system.
+
+Example:
+Expense tracker.
+
+Before coding:
+an engineer visualizes:
+
+```text
+Start app
+↓
+Show menu
+↓
+User chooses option
+↓
+Run operation
+↓
+Update data
+↓
+Return to menu
+↓
+Repeat
+↓
+Quit
+```
+
+THAT is program flow.
+
+---
+
+# The Core Question
+
+Always ask:
+
+# “What is the journey from input → output?”
+
+---
+
+# Step-by-Step Engineering Framework
+
+Use this EVERY time.
+
+---
+
+# STEP 1 — Define Entry Point
+
+Ask:
+
+```text
+Where does the program begin?
+```
+
+Examples:
+
+- command line app starts at `main()`
+- web app starts at API request
+- AI chatbot starts at user message
+- mobile app starts at UI interaction
+
+---
+
+# Expense Tracker
+
+Entry:
+
+```text
+Program launches
+```
+
+---
+
+# STEP 2 — Define Main Loop
+
+Most applications are loops.
+
+Because systems continuously respond to users.
+
+Example:
+
+```text
+Show menu
+Wait for user input
+Run operation
+Repeat
+```
+
+That’s an interaction loop.
+
+---
+
+# Example Mentally
+
+```text
+while running:
+    show menu
+    get choice
+    execute operation
+```
+
+This becomes architecture.
+
+---
+
+# STEP 3 — Define Decision Points
+
+Where does the system branch?
+
+Example:
+
+```text
+If user selects:
+1 → add expense
+2 → view expenses
+3 → total
+```
+
+This is control flow.
+
+---
+
+# STEP 4 — Define Data Movement
+
+CRITICAL.
+
+Ask:
+
+```text
+Where does data go next?
+```
+
+Example:
+
+```text
+User enters expense
+↓
+validate data
+↓
+store expense
+↓
+display confirmation
+```
+
+That’s flow engineering.
+
+---
+
+# STEP 5 — Define State Changes
+
+Ask:
+
+```text
+What changes in the system?
+```
+
+Example:
+
+Before:
+
+```python
+expenses = []
+```
+
+After:
+
+```python
+expenses = [{"amount": 25}]
+```
+
+Program flow often revolves around:
+
+# state transitions
+
+---
+
+# STEP 6 — Define Exit Conditions
+
+Ask:
+
+```text
+When does the process stop?
+```
+
+Examples:
+
+- user quits
+- request completes
+- task finishes
+- error occurs
+
+---
+
+# Expense Tracker Flow
+
+Now let’s design it properly.
+
+---
+
+# High-Level Flow
+
+```text
+START
+↓
+Initialize storage
+↓
+Show menu
+↓
+Get user choice
+↓
+Run matching operation
+↓
+Return to menu
+↓
+Quit if requested
+↓
+END
+```
+
+---
+
+# More Detailed Flow
+
+```text
+Start Program
+↓
+expenses = []
+↓
+Display Menu:
+    1. Add Expense
+    2. View Expenses
+    3. Calculate Total
+    4. Filter Expenses
+    5. Quit
+↓
+User Input
+↓
+IF choice == 1
+    add_expense()
+
+ELIF choice == 2
+    view_expenses()
+
+ELIF choice == 3
+    calculate_total()
+
+ELIF choice == 4
+    filter_by_category()
+
+ELIF choice == 5
+    exit
+↓
+Repeat
+```
+
+THIS is engineering thinking.
+
+Not syntax memorization.
+
+---
+
+# Real Engineering Insight
+
+Program flow is basically:
+
+# workflow design
+
+That’s why your sales/business background helps.
+
+You already understand workflows.
+
+Now you’re encoding them into software.
+
+---
+
+# Example: AI Due Diligence System
+
+Think flow-first.
+
+---
+
+# Flow
+
+```text
+User uploads document
+↓
+Extract text
+↓
+Chunk document
+↓
+Generate embeddings
+↓
+Store vectors
+↓
+User asks question
+↓
+Retrieve relevant chunks
+↓
+Send to LLM
+↓
+Generate answer
+↓
+Return response
+```
+
+That is program flow.
+
+Every serious software system works this way.
+
+---
+
+# Engineers Think in Pipelines
+
+Especially backend/AI engineers.
+
+Example:
+
+```text
+Input
+↓
+Validation
+↓
+Processing
+↓
+Storage
+↓
+Analysis
+↓
+Output
+```
+
+This pattern is EVERYWHERE.
+
+---
+
+# The Biggest Beginner Mistake
+
+Trying to code before understanding flow.
+
+Professionals often sketch:
+
+- diagrams
+- bullets
+- state transitions
+- workflows
+
+FIRST.
+
+---
+
+# Program Flow vs Operations
+
+Important distinction.
+
+## Operations
+
+What the system CAN do.
+
+Example:
+
+```python
+add_expense()
+```
+
+---
+
+## Flow
+
+WHEN and WHY operations happen.
+
+Example:
+
+```text
+User chooses menu option
+→ add_expense() executes
+→ data updates
+→ menu reappears
+```
+
+Flow orchestrates operations.
+
+---
+
+# The Secret Senior Engineer Skill
+
+Senior engineers constantly ask:
+
+```text
+What happens next?
+What triggers this?
+What state changes?
+What if this fails?
+What depends on this?
+```
+
+THAT is system thinking.
+
+---
+
+# Your New Habit
+
+Before coding ANYTHING:
+
+Write the flow in plain English.
+
+Like this:
+
+```text
+User logs in
+↓
+System validates credentials
+↓
+Fetch user data
+↓
+Display dashboard
+↓
+User uploads file
+↓
+AI processes file
+↓
+Results stored in database
+↓
+Dashboard updates
+```
+
+If you can describe the flow clearly:
+coding becomes MUCH easier.
+
+Because now the code is just implementing the plan.

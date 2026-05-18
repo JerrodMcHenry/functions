@@ -1,0 +1,574 @@
+Excellent. Now you’re asking architecture questions.
+
+This is the next layer up from functions and data structures.
+
+# Data storage is fundamentally:
+
+## “Where does the system’s state live?”
+
+That’s the engineering question.
+
+Because software is really:
+
+- input
+- processing
+- storage
+- output
+
+The storage decision determines:
+
+- scalability
+- speed
+- persistence
+- complexity
+- cost
+- architecture
+
+---
+
+# First Principle
+
+An engineer asks:
+
+# “How long does this data need to exist?”
+
+That immediately narrows the choices.
+
+---
+
+# Storage Type 1 — In-Memory Storage
+
+Example:
+
+```python
+expenses = []
+```
+
+Data lives:
+
+# inside program memory (RAM)
+
+---
+
+# Characteristics
+
+## GOOD:
+
+- simple
+- fast
+- great for prototypes
+
+## BAD:
+
+- disappears when program stops
+- not persistent
+- not scalable
+
+---
+
+# When Engineers Use It
+
+- prototypes
+- temporary state
+- caching
+- session data
+- quick scripts
+- small tools
+
+---
+
+# Expense Tracker v1
+
+Perfect candidate.
+
+Why?
+
+Because:
+
+- beginner project
+- simple
+- no users
+- no persistence needed yet
+
+This is why engineers START simple.
+
+---
+
+# The Hidden Principle
+
+# Build for current requirements, not imaginary future requirements.
+
+Beginners massively over-engineer.
+
+---
+
+# Storage Type 2 — File Storage
+
+Example:
+
+```python
+expenses.json
+```
+
+or:
+
+```python
+expenses.csv
+```
+
+---
+
+# Characteristics
+
+## GOOD:
+
+- persistent
+- simple
+- easy to inspect
+
+## BAD:
+
+- poor scalability
+- concurrency problems
+- inefficient querying
+
+---
+
+# When Engineers Use It
+
+- local tools
+- configs
+- logs
+- exports
+- lightweight persistence
+
+---
+
+# Expense Tracker v2
+
+Now maybe you want:
+
+```text
+close program
+reopen later
+expenses still exist
+```
+
+Now memory alone fails.
+
+So engineer thinks:
+
+# “I need persistence.”
+
+File storage becomes logical.
+
+---
+
+# Storage Type 3 — Relational Database
+
+Examples:
+
+- PostgreSQL
+- MySQL
+- SQLite
+
+This is BIG.
+
+---
+
+# Characteristics
+
+## GOOD:
+
+- structured
+- scalable
+- persistent
+- queryable
+- relationships
+
+## BAD:
+
+- more complexity
+- schema management
+- infrastructure needed
+
+---
+
+# When Engineers Use It
+
+When data becomes:
+
+- large
+- relational
+- important
+- multi-user
+- query-heavy
+
+---
+
+# Example
+
+Now your expense tracker has:
+
+- multiple users
+- accounts
+- budgets
+- analytics
+
+Now you need:
+
+```text
+users
+expenses
+categories
+transactions
+```
+
+This becomes relational data.
+
+Database makes sense.
+
+---
+
+# Why Engineers Love Relational Databases
+
+Because business systems are relational.
+
+Example:
+
+```text
+User
+ └── has many expenses
+
+Expense
+ └── belongs to category
+```
+
+Databases model relationships elegantly.
+
+---
+
+# Storage Type 4 — NoSQL Database
+
+Examples:
+
+- MongoDB
+- DynamoDB
+
+Stores flexible document-like data.
+
+---
+
+# Characteristics
+
+## GOOD:
+
+- flexible schema
+- scalable
+- fast iteration
+
+## BAD:
+
+- weaker relationships
+- data consistency tradeoffs
+
+---
+
+# When Engineers Use It
+
+- rapidly changing schemas
+- document systems
+- huge distributed systems
+- event-heavy applications
+
+---
+
+# Example
+
+AI chatbot conversations:
+
+```json
+{
+  "user": "Jerrod",
+  "messages": [...]
+}
+```
+
+Document-style storage works well.
+
+---
+
+# Storage Type 5 — Cache Storage
+
+Examples:
+
+- Redis
+
+Purpose:
+
+# speed
+
+---
+
+# Characteristics
+
+## GOOD:
+
+- extremely fast
+- temporary
+- great for performance
+
+## BAD:
+
+- often temporary
+- memory expensive
+
+---
+
+# Used For
+
+- AI response caching
+- sessions
+- rate limiting
+- queues
+- fast lookup
+
+---
+
+# Storage Type 6 — Vector Databases
+
+Examples:
+
+- Pinecone
+- Weaviate
+- pgvector
+
+Critical for AI systems.
+
+---
+
+# Used For
+
+- embeddings
+- semantic search
+- RAG
+- similarity matching
+
+---
+
+# Example
+
+AI due diligence app:
+
+```text
+upload PDF
+→ chunk text
+→ generate embeddings
+→ store vectors
+→ semantic retrieval
+```
+
+That’s vector storage.
+
+---
+
+# How Engineers Actually Decide
+
+This is the REAL framework.
+
+---
+
+# Step 1 — Define persistence needs
+
+Ask:
+
+```text
+Does data need to survive program shutdown?
+```
+
+NO:
+→ memory
+
+YES:
+→ file/database
+
+---
+
+# Step 2 — Define scale
+
+Ask:
+
+```text
+How much data?
+How many users?
+```
+
+Small:
+→ file/simple DB
+
+Large:
+→ scalable DB
+
+---
+
+# Step 3 — Define relationships
+
+Ask:
+
+```text
+Does data relate to other data?
+```
+
+YES:
+→ relational DB
+
+---
+
+# Step 4 — Define query complexity
+
+Ask:
+
+```text
+Will users search/filter/analyze heavily?
+```
+
+YES:
+→ database
+
+---
+
+# Step 5 — Define flexibility needs
+
+Ask:
+
+```text
+Will schema constantly change?
+```
+
+YES:
+→ NoSQL/document DB
+
+---
+
+# Step 6 — Define performance requirements
+
+Ask:
+
+```text
+Does speed matter critically?
+```
+
+YES:
+→ cache layer
+
+---
+
+# Step 7 — Define AI requirements
+
+Ask:
+
+```text
+Do I need semantic similarity search?
+```
+
+YES:
+→ vector DB
+
+---
+
+# Example Progression of a REAL Product
+
+This is important.
+
+# Version 1
+
+```python
+expenses = []
+```
+
+Simple memory.
+
+---
+
+# Version 2
+
+```text
+expenses.json
+```
+
+Persistence added.
+
+---
+
+# Version 3
+
+```text
+SQLite/Postgres
+```
+
+Multiple users + queries.
+
+---
+
+# Version 4
+
+```text
+Postgres + Redis
+```
+
+Performance optimization.
+
+---
+
+# Version 5
+
+```text
+Postgres + Redis + Vector DB
+```
+
+AI-powered search/features.
+
+---
+
+# THIS is Engineering
+
+Not building perfect systems immediately.
+
+But:
+
+# evolving architecture based on requirements.
+
+That’s how real systems are built.
+
+---
+
+# Biggest Beginner Mistake
+
+Trying to architect Netflix on Day 1.
+
+Real engineers optimize for:
+
+- simplicity
+- maintainability
+- current constraints
+
+Not fantasy scale.
+
+---
+
+# The Most Important Insight
+
+Storage decisions are:
+
+# business decisions disguised as technical decisions
+
+Because they reflect:
+
+- scale
+- users
+- cost
+- performance
+- complexity
+- product goals
+
+That’s real engineering thinking.
