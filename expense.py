@@ -3,11 +3,17 @@
 expenses = []
 
 def get_expense_input():
-    amount = input("Enter amount: ")
+    amount_input = input("Enter amount: ")
+
+    try:
+        amount = float(amount_input)
+    except ValueError:
+        print("Invalid amount. Please enter a number")
+        return
+
     category = input("Enter category: ")
     description = input("Enter description: ")
 
-    amount = float(amount)
 
     add_expense(amount, category, description)
     print("Expense added successfully.")
@@ -32,7 +38,7 @@ def view_expenses():
     for expense in expenses:
 
 # Why bracket notatation? Dictionaries sotre values by keys. You access the data via epense["amount"]
-        print(f'${expense['amount']} - {expense['category']} - {expense['description']}')
+        print(f"${expense['amount']} - {expense['category']} - {expense['description']}")
 
 # Why initialize the total? Accumulation requires a starting value. This is a running accumulator pattern.
 def calculate_total():
@@ -68,30 +74,37 @@ def show_menu():
     print("5. Quit")
 
 
+def handle_menu_choice(choice):
+    if choice == "1":
+        get_expense_input()
+
+    elif choice == "2":
+        view_expenses()
+
+    elif choice == "3":
+        print("Total spent:", calculate_total())
+
+    elif choice == "4":
+        category = input("Enter a category")
+        results = filter_by_category(category)
+        print(results)
+
+    elif choice == "5":
+        print("Goodbye")
+        return False
+
+    else: 
+        print("Invalid option")
+
+    return True
+
+
 def run_app():
-    while True:
+    running = True
+
+    while running:
         show_menu()
-        choice = input ("Choose an option: ")
-
-        if choice == "1":
-            get_expense_input()
-
-        elif choice == "2":
-            view_expenses()
-
-        elif choice == "3":
-            print("Total spent:", calculate_total())
-
-        elif choice == "4":
-            category = input("Enter category")
-            results = filter_by_category(category)
-            print(results)
-
-        elif choice == "5":
-            print("Goodbye")
-            break
-        
-        else:
-            print("Invalid option. Try again.")
+        choice = input("Choose an option: ")
+        running = handle_menu_choice(choice)
         
 run_app()
