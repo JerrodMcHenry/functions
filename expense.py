@@ -2,6 +2,16 @@
 # Every function either modifies it, reads from it, derives information from it
 expenses = []
 
+def get_expense_input():
+    amount = input("Enter amount: ")
+    category = input("Enter category: ")
+    description = input("Enter description: ")
+
+    amount = float(amount)
+
+    add_expense(amount, category, description)
+    print("Expense added successfully.")
+
 # Why parameters? Functions should recieve the data they operate on. 
 # This makes the function reusalble, fixable and modular. Hardcoding values would destroy scalability
 def add_expense(amount, category, description):
@@ -47,13 +57,41 @@ def filter_by_category(category):
     
     return filtered_expenses
 
-add_expense(25, "food", "Chipotle")
-add_expense(80, "gas", "Chevron")
-add_expense(15, "food", "Starbucks")
 
-view_expenses()
 
-print("Total spent:", calculate_total())
+def show_menu():
+    print("\nExpense Tracker")
+    print("1. Add expense")
+    print("2. View expenses")
+    print("3. Calculate total")
+    print("4. Filter by category")
+    print("5. Quit")
 
-food_expenses = filter_by_category("food")
-print(food_expenses)
+
+def run_app():
+    while True:
+        show_menu()
+        choice = input ("Choose an option: ")
+
+        if choice == "1":
+            get_expense_input()
+
+        elif choice == "2":
+            view_expenses()
+
+        elif choice == "3":
+            print("Total spent:", calculate_total())
+
+        elif choice == "4":
+            category = input("Enter category")
+            results = filter_by_category(category)
+            print(results)
+
+        elif choice == "5":
+            print("Goodbye")
+            break
+        
+        else:
+            print("Invalid option. Try again.")
+        
+run_app()
